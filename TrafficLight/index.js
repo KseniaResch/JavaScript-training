@@ -27,8 +27,22 @@ const start = () => {
 
     setTimeout(() => {
         switchOff("red");
-        switchOff("yellow")
+        switchOff("yellow");
+        switchOn("green");
+
     }, 10000);
+
+     setTimeout(() => {
+     switchOn("yellow");   
+    }, 17000);
+
+    setTimeout(() => {
+     switchOff("green")
+     switchOff("yellow")
+    }, 20000);
+
 }
 
+
 start();
+setInterval(start, 20000)
