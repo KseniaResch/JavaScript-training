@@ -72,18 +72,25 @@ body {
     margin: -430;
 }
 
-#timer {
- 
+.timer-box {
+    background-color: #373937;
+    font-size: 32px;
+    text-align: center;
+    border-radius: 10px;
+    width: 100;
+    height: 80;
+    margin-top: 40;
+}
+
+    #timer {
     font-size: 32px;
     color: #e5dddd;
     margin-top: 35px;
     font-weight: bold;
-    text-decoration: none;
-    width: auto;
-    background-color: grey;
     height: 80;
-    border-radius: 10%;
+   
 }
+
 
 
 
