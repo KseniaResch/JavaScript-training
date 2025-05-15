@@ -17,12 +17,17 @@ const switchOff = (id) => {
   
 }
 
+let yellowAfterRed = 7000;
+let greenAfterYellow = 10000;
+let yellowAfterGreen = 17000;
+let switchOffGreen = 20000;
+
 const start = () => {
     switchOn("red");
 
     setTimeout(() => {
      switchOn("yellow");   
-    }, 7000);
+    }, yellowAfterRed);
     
 
     setTimeout(() => {
@@ -30,16 +35,16 @@ const start = () => {
         switchOff("yellow");
         switchOn("green");
 
-    }, 10000);
+    }, greenAfterYellow);
 
      setTimeout(() => {
      switchOn("yellow");   
-    }, 17000);
+    }, yellowAfterGreen);
 
     setTimeout(() => {
      switchOff("green")
      switchOff("yellow")
-    }, 20000);
+    }, switchOffGreen);
 
 }
 
