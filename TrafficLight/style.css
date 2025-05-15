@@ -5,7 +5,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(204, 224, 250);
   
+}
+
+.traffic-structure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
 .container  {
@@ -14,7 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color:rgb(46, 45, 45);
+    background-color: black;
     width: 150px;
     border-radius: 20px;
     height: 350px;
@@ -48,10 +56,20 @@ body {
     
 }
 
-#line1{
-    width: 40px;
-  height: 300px;
-  background: rgb(46, 45, 45);
-  margin-top: 30px;
-  box-shadow: inset 0 0 5px #000;
+#base {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  border-radius: 10px;
+  margin: 0px;
 }
+
+#holder {
+    width: 40px;
+    height: 380px;
+    background-color: black;
+    border-radius: 10px;
+    margin: -430;
+}
+
+
