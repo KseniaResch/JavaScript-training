@@ -7,7 +7,7 @@ redlight.style.opacity= 0.5;*/
 let timer = document.getElementById("timer");
 let countdownGO = 3;
 let countdownSTOP = 3;
-let countdownGoInterval;
+let countdownGoInterval;// why do i need two????
 let countdownStopInterval;
 
 
@@ -32,7 +32,7 @@ const countdownStop = () =>{
 }
 
 const beginCountdownGO = () => {
-  countdownGO = 3;
+  countdownGO = 3;// why do i need to reset the variable???
   timer.textContent = countdownGO;
   countdownGoInterval = setInterval(countdownGo, 1000); 
 };
@@ -42,6 +42,12 @@ const beginCountdownStop = () => {
   timer.textContent = countdownSTOP;
   countdownStopInterval = setInterval(countdownStop, 1000); 
 };
+
+let  colorSwitched =  document.getElementById("timer");
+
+const switchColor= (color) => {
+   colorSwitched.style.color = color;
+}
 
 
 const switchOn = (id) => {
@@ -71,6 +77,7 @@ const start = () => {
     }, yellowAfterRed);
 
     setTimeout(() => {
+     switchColor("green");
      beginCountdownGO()   
     }, timerStartGo);
     
@@ -82,6 +89,7 @@ const start = () => {
     }, greenAfterYellow);
 
     setTimeout(() => {
+     switchColor("red");
      beginCountdownStop()   
     }, timerStartStop);
 
