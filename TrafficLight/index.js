@@ -2,7 +2,7 @@
 
 console.dir(redlight)
 
-redlight.style.opacity = 1;
+
 redlight.style.opacity= 0.5;*/
 const workingTimeOfTrafficLight = 10000; //ms
 let timer = document.getElementById("timer");
