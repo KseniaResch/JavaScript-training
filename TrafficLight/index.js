@@ -43,12 +43,15 @@ const startCounter = () => {
 
 const start = () => {
     switchOn("red");
+    switchColor("red");
     startCounter();
+
 
 
 
     setTimeout(() => {
         switchOff("red");
+        switchColor("green");
         switchOn("green");
         startCounter();
            
