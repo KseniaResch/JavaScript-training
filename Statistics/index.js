@@ -1,18 +1,28 @@
-const cesnsus = ((list) =>{
-   let listArr = [ 
-    { age: 12, name: 'Bob', gender: 'Male' },
-    { age: 37, name: 'Liza', gender: 'Female' },
-    { age: 40, name: 'Foo', gender: 'Male' }
+const census = ((listArr) =>{
+//    let listArr = [ 
+//     { age: 12, name: 'Bob', gender: 'Male' },
+//     { age: 37, name: 'Liza', gender: 'Female' },
+//     { age: 40, name: 'Foo', gender: 'Male' }
     
-   ]
-   
-   let maxAge = listArr[0].age;
+//    ]
+ if ( !listArr || listArr === 0) {
+    return undefined
+ }
+   let malePersonOfMaxAge = listArr[0];  //???????????????????
+
    for(let i = 0; i < listArr.length; i++) {
-    if (maxAge < listArr[i].age) {
-        maxAge = listArr[i].age;
-    }
-   }
-})
+    if (malePersonOfMaxAge.age < listArr[i].age && listArr[i].gender === "Male") {
+        malePersonOfMaxAge = listArr[i];
+    } 
+  } 
+
+   if (malePersonOfMaxAge) {
+    return malePersonOfMaxAge.name 
+} else {
+     return undefined
+
+}}); 
+
 console.log(census([
   { age: 12, name: 'Bob', gender: 'Male' },
   { age: 37, name: 'Liza', gender: 'Female' },
@@ -20,4 +30,4 @@ console.log(census([
 ])); // 'Foo'
 console.log(census([{ age: 40, name: 'Liza', gender: 'Female' }])); // 'undefined'
 
-cesnsus()
+census()
