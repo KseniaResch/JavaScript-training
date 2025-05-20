@@ -13,8 +13,8 @@ const checkTicket = ((ticketString)=> {
 
     const firstHalfArray= firstHalftNumbers;
     const  secondHalfArray= secondHalfNumber;
-    const sumOfNumbers1 = 0;
-    const  sumOfNumbers2 = 0;
+    let sumOfNumbers1 = 0;
+    let  sumOfNumbers2 = 0;
 
       for (let i =  0; i < firstHalfArray.length; i++){
       sumOfNumbers1 += firstHalfArray[i];
