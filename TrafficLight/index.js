@@ -1,20 +1,16 @@
 
 const workingTimeOfTrafficLight = 10000; //ms
 let timer = document.getElementById("timer");
-
-
 let  colorSwitched =  document.getElementById("timer");
 
 const switchColor= (color) => {
    colorSwitched.style.color = color;
 }
 
-
 const switchOn = (id) => {
     let light = document.getElementById(id);
     light.style.opacity = 1; 
 }
-
 
 const switchOff = (id) => {
     let light = document.getElementById(id);
@@ -31,7 +27,6 @@ const startCounter = () => {
          if (counter === 3) {
             switchOn("yellow");
         }
-
         if (counter === 0) {
             clearInterval(intervalId);
             counter = workingTimeOfTrafficLight / 1000;
@@ -46,16 +41,11 @@ const start = () => {
     switchColor("red");
     startCounter();
 
-
-
-
     setTimeout(() => {
         switchOff("red");
         switchColor("green");
         switchOn("green");
-        startCounter();
-           
-    
+        startCounter();         
     }, workingTimeOfTrafficLight);
 
     setTimeout(() => {
@@ -63,7 +53,6 @@ const start = () => {
     }, workingTimeOfTrafficLight * 2);
         
 }
-
 
 start();
 setInterval(start, workingTimeOfTrafficLight * 2 )
