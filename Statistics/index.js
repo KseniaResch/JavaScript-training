@@ -1,33 +1,67 @@
-const census = ((listArr) =>{
-//    let listArr = [ 
-//     { age: 12, name: 'Bob', gender: 'Male' },
-//     { age: 37, name: 'Liza', gender: 'Female' },
-//     { age: 40, name: 'Foo', gender: 'Male' }
-    
-//    ]
- if ( !listArr || listArr === 0) {
+const census = (listArr) =>{
+
+ if ( !listArr || listArr.length === 0) {
     return undefined
  }
-   let malePersonOfMaxAge = listArr[0];  //???????????????????
-
+   let oldestMale = null;  
+  
    for(let i = 0; i < listArr.length; i++) {
-    if (malePersonOfMaxAge.age < listArr[i].age && listArr[i].gender === "Male") {
-        malePersonOfMaxAge = listArr[i];
+     person = listArr[i] 
+     if( person.gender == "Male") {   
+    if( oldestMale === null || oldestMale.age < person.age ){
+      oldestMale = person    
     } 
-  } 
+  }
+} if (oldestMale) {
+  return oldestMale.name;
 
-   if (malePersonOfMaxAge) {
-    return malePersonOfMaxAge.name 
-} else {
-     return undefined
+}
+}
 
-}}); 
+const findPerson= (listArr) =>{
+  if (!listArr || listArr.length === 0){
+    return undefined
+  }
 
+  let oldestMale = { age: null, name: "default"};
+
+  for (let i = 0; i < listArr.length; i++) {
+    let person = listArr[i]
+    
+    if (person.gender === "Female") {
+      continue
+  }
+   if  (oldestMale.age === 0 || oldestMale.age < person.age ){
+    oldestMale = person;
+  }
+}
+ 
+  return oldestMale.name? oldestMale.name : undefined
+   
+}
+
+
+   
 console.log(census([
+  { age: 100, name: 'Jack', gender: 'Female' },
+  { age: 80, name: 'Liza', gender: 'Female' },
   { age: 12, name: 'Bob', gender: 'Male' },
-  { age: 37, name: 'Liza', gender: 'Female' },
   { age: 40, name: 'Foo', gender: 'Male' }
 ])); // 'Foo'
 console.log(census([{ age: 40, name: 'Liza', gender: 'Female' }])); // 'undefined'
 
 census()
+
+
+console.log(findPerson([
+  { age: 100, name: 'Jack', gender: 'Female' },
+  { age: 80, name: 'Liza', gender: 'Female' },
+  { age: 12, name: 'Bob', gender: 'Male' },
+  { age: 40, name: 'Foo', gender: 'Male' }
+
+]))
+
+console.log(findPerson([{ age: 40, name: 'Liza', gender: 'Female' }
+]));
+
+
