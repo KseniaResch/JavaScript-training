@@ -54,20 +54,22 @@ const  startWorkOfLight = (mainColor, workingTimeOfTrafficLight) => { // main co
         timer.textContent = counter; // displays the new number
         if (counter === 3){
             switchOn("yellow")
-        } if (counter === 0) {
+        } 
+        if (counter === 0) {
             clearInterval(intervalId) // clears interval to prevent counting < 0
             switchOff("yellow")
+            switchOff(mainColor)
            resolve(); // the reuslt of promise is returned we can for to the next element in while loop
         } 
     },1000);
  });
 };
 
-
 const start = async () => {
       while (true) {
-        await startWorkOfLight('red', duration.red);
-        await startWorkOfLight('green', duration.green);
+          await startWorkOfLight('blue', duration.green);
+          await startWorkOfLight('green', duration.green);
+          await startWorkOfLight('red', duration.red);
       }
     };
 
