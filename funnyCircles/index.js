@@ -3,10 +3,11 @@
 //2. write function for unique color
 //3. 
 
-const amountOfcirclesArray = 5 ;
+const amountOfcirclesArray = 4 ;
+const circleSize = 100 //px
 
 const container = document.getElementById("container")
-document.addEventListener("mousemove", (event123)=> {
+/*document.addEventListener("mousemove", (event123)=> {
     console.log("mousemove", event123)
 })
 
@@ -18,24 +19,45 @@ const click = () => {document.addEventListener("mousedown", (event)=> {
 })
  document.addEventListener("mouseup", (event)=> {
     console.log("mouseup", event)
-})}
+})}*/
 
-const doubleClick 
+const doubleClick = (event) => {
+    console.log("doubleClick", event);
+    let cord = container.getBoundingClientRect(); 
+    console.log(cord);
+  let clientX = event.clientX - cord.left - circleSize / 2; 
+  let clientY = event.clientY - cord.top - circleSize / 2;
+    createCircle(clientX, clientY);
+}
+
+document.addEventListener("dblclick", doubleClick);
 
 
-const createCircle = () => {
+const createCircle = (coordinateLeft, coordinateTop) => {
    const element = document.createElement("div")
    element.className = "circle";
    element.style.backgroundColor = "blue";
+   element.style.top = coordinateTop + "px";
+   element.style.left = `${coordinateLeft}px`;
+   element.style.width = circleSize + "px";
+   element.style.height = circleSize + "px";
+
+
    container.appendChild(element)
 }
 
-const drawCircles = (amountOfcircles) => {
-     if (doubleClick){
-    for(let i = 0; i <= amountOfcircles; i++){
+
+
+const drawCircles = (amountOfcirc) => {
+   for(let i = 1; i <= amountOfcirc; i++){
         createCircle()
-    }
-     }
+    }  
 }
 
-drawCircles();
+drawCircles(amountOfcirclesArray);
+
+//random color - hex
+//if double click om the existing circle -delete circle
+//if new circle outside of container - forbidden -inform user
+//
+
