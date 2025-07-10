@@ -23,20 +23,27 @@ const click = () => {document.addEventListener("mousedown", (event)=> {
 
 const doubleClick = (event) => {
     console.log("doubleClick", event);
-    let cord = container.getBoundingClientRect(); 
+    let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport
     console.log(cord);
-  let clientX = event.clientX - cord.left - circleSize / 2; 
-  let clientY = event.clientY - cord.top - circleSize / 2;
+  let clientX = event.clientX - cord.left - circleSize / 2; // calculates X position relative to container
+  let clientY = event.clientY - cord.top - circleSize / 2;// calculates Y position relative to container
     createCircle(clientX, clientY);
 }
 
 document.addEventListener("dblclick", doubleClick);
 
+// const randomColor = () => {
+//  Math.floor(Math.random()*16777215).toString(16);
+//   document.body.style.backgroundColor = "#" + randomColor;
+//   color.innerHTML = "#" + randomColor;   
+
+// }
+
 
 const createCircle = (coordinateLeft, coordinateTop) => {
    const element = document.createElement("div")
    element.className = "circle";
-   element.style.backgroundColor = "blue";
+   element.style.backgroundColor = Math.floor(Math.random()*16777215).toString(16);
    element.style.top = coordinateTop + "px";
    element.style.left = `${coordinateLeft}px`;
    element.style.width = circleSize + "px";
