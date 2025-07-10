@@ -63,6 +63,12 @@ const drawCircles = (amountOfcirc) => {
 
 drawCircles(amountOfcirclesArray);
 
+
+const deleteCircle = () => {
+    
+
+}
+
 //random color - hex
 //if double click om the existing circle -delete circle
 //if new circle outside of container - forbidden -inform user
