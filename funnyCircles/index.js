@@ -1,7 +1,7 @@
 
 //1.function to generate a circle
 //2. write function for unique color
-//3. 
+//3.
 
 const amountOfcirclesArray = 4 ;
 const circleSize = 100 //px
@@ -11,7 +11,7 @@ const container = document.getElementById("container")
     console.log("mousemove", event123)
 })
 
- 
+
 
 
 const click = () => {document.addEventListener("mousedown", (event)=> {
@@ -27,7 +27,10 @@ const doubleClick = (event) => {
     console.log(cord);
   let clientX = event.clientX - cord.left - circleSize / 2; // calculates X position relative to container
   let clientY = event.clientY - cord.top - circleSize / 2;// calculates Y position relative to container
-    createCircle(clientX, clientY);
+  if (event.target.classList.contains("circle")) {
+    return; // deletes an already existing circle
+   
+} createCircle(clientX, clientY);
 }
 
 document.addEventListener("dblclick", doubleClick);
@@ -35,7 +38,7 @@ document.addEventListener("dblclick", doubleClick);
 // const randomColor = () => {
 //  Math.floor(Math.random()*16777215).toString(16);
 //   document.body.style.backgroundColor = "#" + randomColor;
-//   color.innerHTML = "#" + randomColor;   
+//   color.innerHTML = "#" + randomColor;
 
 // }
 
@@ -48,6 +51,9 @@ const createCircle = (coordinateLeft, coordinateTop) => {
    element.style.left = `${coordinateLeft}px`;
    element.style.width = circleSize + "px";
    element.style.height = circleSize + "px";
+   element.addEventListener('dblclick', () => {
+    element.remove();
+   });
 
 
    container.appendChild(element)
@@ -55,23 +61,26 @@ const createCircle = (coordinateLeft, coordinateTop) => {
 
 const getRandomColor = (randomColor) => {
  return "#"+ Math.floor(Math.random()*16777215).toString(16);
-  
+
 }
 
 
 const drawCircles = (amountOfcirc) => {
    for(let i = 1; i <= amountOfcirc; i++){
         createCircle()
-    }  
+    }
 }
 
 drawCircles(amountOfcirclesArray);
 
 
-const deleteCircle = () => {
+// const deleteCircle = (element) => {
+//     element.addEventListener('dblclick', () => {
+//         element.remove();
+//     });
+// };
 
 
-}
 
 //random color - hex
 //if double click om the existing circle -delete circle
