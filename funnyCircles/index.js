@@ -43,7 +43,7 @@ document.addEventListener("dblclick", doubleClick);
 const createCircle = (coordinateLeft, coordinateTop) => {
    const element = document.createElement("div")
    element.className = "circle";
-   element.style.backgroundColor = Math.floor(Math.random()*16777215).toString(16);
+   element.style.backgroundColor = getRandomColor();
    element.style.top = coordinateTop + "px";
    element.style.left = `${coordinateLeft}px`;
    element.style.width = circleSize + "px";
@@ -53,6 +53,10 @@ const createCircle = (coordinateLeft, coordinateTop) => {
    container.appendChild(element)
 }
 
+const getRandomColor = (randomColor) => {
+ return "#"+ Math.floor(Math.random()*16777215).toString(16);
+  
+}
 
 
 const drawCircles = (amountOfcirc) => {
@@ -65,7 +69,7 @@ drawCircles(amountOfcirclesArray);
 
 
 const deleteCircle = () => {
-    
+
 
 }
 
