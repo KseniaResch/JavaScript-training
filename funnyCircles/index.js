@@ -5,6 +5,7 @@
 
 const amountOfcirclesArray = 4 ;
 const circleSize = 100 //px
+const circleRadius = circleSize / 2;
 
 const container = document.getElementById("container")
 /*document.addEventListener("mousemove", (event123)=> {
@@ -25,12 +26,35 @@ const doubleClick = (event) => {
     console.log("doubleClick", event);
     let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport
     console.log(cord);
-  let clientX = event.clientX - cord.left - circleSize / 2; // calculates X position relative to container
-  let clientY = event.clientY - cord.top - circleSize / 2;// calculates Y position relative to container
+    
+  let circleX = event.clientX - cord.left - circleRadius; // calculates X position relative to container
+  let circleY = event.clientY - cord.top - circleRadius;// calculates Y position relative to container
+  const clientX = event.clientX - cord.left;
+  const clientY =  event.clientY - cord.top;
+  console.log("clientX", event.clientX - cord.left)
+  console.log("clientY", event.clientY - cord.top)
+  
   if (event.target.classList.contains("circle")) {
     return; // deletes an already existing circle
-   
-} createCircle(clientX, clientY);
+  }
+   console.log(111, circleX)
+   console.log(222, container.clientWidth)
+  if (
+    clientX < circleRadius ||
+    clientY < circleRadius || 
+    clientX + circleRadius > container.clientWidth ||
+    clientY + circleRadius > container.clientHeight
+
+    ) {
+    console.log("forbidden")
+    container.style.border = "2px red solid"
+    setTimeout(() => {
+        container.style.border = "1px black solid" 
+    }, 300)
+    return;
+  }
+ 
+  createCircle(circleX, circleY);
 }
 
 document.addEventListener("dblclick", doubleClick);
@@ -42,6 +66,12 @@ document.addEventListener("dblclick", doubleClick);
 
 // }
 
+// let clientX = 0;
+// let clientY = 0;
+// const OutOfContainer = clientX < 0 ||
+//  clientY < 0 ||
+//   clientX + circleSize > container.clientWidth ||
+//    clientY + circleSize > clientHeight;
 
 const createCircle = (coordinateLeft, coordinateTop) => {
    const element = document.createElement("div")
@@ -51,6 +81,10 @@ const createCircle = (coordinateLeft, coordinateTop) => {
    element.style.left = `${coordinateLeft}px`;
    element.style.width = circleSize + "px";
    element.style.height = circleSize + "px";
+//    if (isOutBounds) {
+//     warningEL.textContent = "Circle cant be placed outside of container"
+
+//    }
    element.addEventListener('dblclick', () => {
     element.remove();
    });
@@ -58,6 +92,8 @@ const createCircle = (coordinateLeft, coordinateTop) => {
 
    container.appendChild(element)
 }
+
+
 
 const getRandomColor = (randomColor) => {
  return "#"+ Math.floor(Math.random()*16777215).toString(16);
@@ -74,6 +110,26 @@ const drawCircles = (amountOfcirc) => {
 drawCircles(amountOfcirclesArray);
 
 
+
+const dragCircle = (event) => {
+    console.log("event", event)
+    if (event.target.className !== "circle"){
+        return
+    }
+    
+    container.addEventListener("mousemove",(event1) => {
+        console.log(event1)
+  let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport   
+  let circleX = event1.clientX - cord.left - circleRadius; // calculates X position relative to container
+  let circleY = event1.clientY - cord.top - circleRadius;// calculates Y position relative to container
+        event.target.style.top = circleY;
+        event.target.style.left = circleX;
+        
+    })
+}
+
+container.addEventListener("mousedown", dragCircle)
+
 // const deleteCircle = (element) => {
 //     element.addEventListener('dblclick', () => {
 //         element.remove();
@@ -82,8 +138,11 @@ drawCircles(amountOfcirclesArray);
 
 
 
-//random color - hex
-//if double click om the existing circle -delete circle
-//if new circle outside of container - forbidden -inform user
-//
+
+// create errorfunction 
+// all the random created circles must have random positions and not touch each other
+// draganddropfunction : 3 events - press / loose/ change coordinate: mousedown/mousemove/mouseup /REMOVE EVENTListner
+
+
+
 
