@@ -47,10 +47,11 @@ const doubleClick = (event) => {
 
     ) {
     console.log("forbidden")
-    container.style.border = "2px red solid"
-    setTimeout(() => {
-        container.style.border = "1px black solid" 
-    }, 300)
+    // container.style.border = "2px red solid"
+    // setTimeout(() => {
+    //     container.style.border = "1px black solid" 
+    // }, 300)
+    throwErrow("Circle can't be placed outside of the box");
     return;
   }
  
@@ -130,11 +131,16 @@ const dragCircle = (event) => {
 
 container.addEventListener("mousedown", dragCircle)
 
-// const deleteCircle = (element) => {
-//     element.addEventListener('dblclick', () => {
-//         element.remove();
-//     });
-// };
+const throwErrow = (message = "Something went wrong") => {
+    container.style.border = "2px red solid";
+    setTimeout(() => {
+         alert(message)
+        container.style.border = "1px black solid"
+    }, 100);
+   ; 
+    throw new Error (message);
+}
+
 
 
 
