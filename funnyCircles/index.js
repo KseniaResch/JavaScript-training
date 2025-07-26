@@ -6,6 +6,7 @@
 const amountOfcirclesArray = 4 ;
 const circleSize = 100 //px
 const circleRadius = circleSize / 2;
+const positions = [];
 
 const container = document.getElementById("container")
 /*document.addEventListener("mousemove", (event123)=> {
@@ -75,6 +76,10 @@ document.addEventListener("dblclick", doubleClick);
 //    clientY + circleSize > clientHeight;
 
 const createCircle = (coordinateLeft, coordinateTop) => {
+    generateRandomPosition();
+    if(isOverlapping()){
+        return;
+    }
    const element = document.createElement("div")
    element.className = "circle";
    element.style.backgroundColor = getRandomColor();
@@ -82,6 +87,7 @@ const createCircle = (coordinateLeft, coordinateTop) => {
    element.style.left = `${coordinateLeft}px`;
    element.style.width = circleSize + "px";
    element.style.height = circleSize + "px";
+
 //    if (isOutBounds) {
 //     warningEL.textContent = "Circle cant be placed outside of container"
 
@@ -100,6 +106,22 @@ const getRandomColor = (randomColor) => {
  return "#"+ Math.floor(Math.random()*16777215).toString(16);
 
 }
+
+function generateRandomPosition(containerWidth, containerHeight) {
+  const x = Math.random() * (containerWidth - circleSize);
+  const y = Math.random() * (containerHeight - circleSize);
+  return { x, y };
+}
+
+function isOverlapping(newPos) {
+  return positions.some(pos => {
+    return (
+      Math.abs(pos.x - newPos.x) < elementSize &&
+      Math.abs(pos.y - newPos.y) < elementSize
+    );
+  });
+}
+
 
 
 const drawCircles = (amountOfcirc) => {
@@ -140,6 +162,7 @@ const throwErrow = (message = "Something went wrong") => {
    ; 
     throw new Error (message);
 }
+
 
 
 
