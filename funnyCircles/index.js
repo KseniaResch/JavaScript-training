@@ -3,32 +3,37 @@
 //2. write function for unique color
 //3.
 
-const amountOfcirclesArray = 4 ;
-const circleSize = 100 //px
+const amountOfcirclesArray = 4;
+const circleSize = 100; //px
 const circleRadius = circleSize / 2;
 const positions = [];
-
+const placedCircles = [];
+const maxAttemptsOfCircles = 100;
 const container = document.getElementById("container")
-/*document.addEventListener("mousemove", (event123)=> {
-    console.log("mousemove", event123)
-})
 
 
 
+const isOverlapping =  (x,y)=> {
+     for (const circle of placedCircles) {
+         const dx = x - circle.x;// diffrences in the positions of the existing circle and an inspiring circle
+          const dy = y - circle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);// calculates distance betweeen two points
+        
+         
+                if (distance < circleSize) {
+                    return true
+                }       
+            }
+           return false;
+        }
 
-const click = () => {document.addEventListener("mousedown", (event)=> {
-    console.log("mousedown", event)
-})
- document.addEventListener("mouseup", (event)=> {
-    console.log("mouseup", event)
-})}*/
 
 const doubleClick = (event) => {
     console.log("doubleClick", event);
     let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport
     console.log(cord);
     
-  let circleX = event.clientX - cord.left - circleRadius; // calculates X position relative to container
+  let circleX = event.clientX -cord.left - circleRadius; // calculates X position relative to container
   let circleY = event.clientY - cord.top - circleRadius;// calculates Y position relative to container
   const clientX = event.clientX - cord.left;
   const clientY =  event.clientY - cord.top;
@@ -60,6 +65,14 @@ document.addEventListener("dblclick", doubleClick);
 
 
 const createCircle = (coordinateLeft, coordinateTop) => {
+    const centerX = coordinateLeft + circleRadius;
+    const centerY = coordinateTop + circleRadius;
+    if(isOverlapping(centerX, centerY)){
+        throwErrow("Circles can`t overlap")
+        return ;
+
+        
+    }
    
    const element = document.createElement("div")
    element.className = "circle";
@@ -73,10 +86,27 @@ const createCircle = (coordinateLeft, coordinateTop) => {
 
    element.addEventListener('dblclick', () => {
     element.remove();
+
+
+    let indexOfElement = placedCircles.findIndex((item) => {
+        if( item.id === element.style.backgroundColor) {
+          return true   
+        } else {
+            return false
+        }
+       
+    })
+
+    if (indexOfElement !== -1) {
+        placedCircles.splice( indexOfElement, 1)
+    }
+    console.log(placedCircles);
+    console.dir(element);
    });
 
 
-   container.appendChild(element)
+   container.appendChild(element);
+   placedCircles.push({ x: centerX, y: centerY, id: element.style.backgroundColor}); 
 }
 
 
@@ -93,81 +123,50 @@ function generateRandomPosition(containerWidth, containerHeight) {
   return { x, y };
 }
 
-function isOverlapping(newPos) {
-  return positions.some(pos => {
-    return (
-      Math.abs(pos.x - newPos.x) < elementSize &&
-      Math.abs(pos.y - newPos.y) < elementSize
-    );
-  });
-}
-
-
-
-// const drawCircles = (amountOfcirc) => {
-//    for(let i = 1; i <= amountOfcirc; i++){
-//      generateRandomPosition();
-//     if(isOverlapping()){
-//         return;
-//     }
-//         createCircle()
-//     }
-// }
-
-
-
 
 const drawCircles = (amountOfcirc) => {
-    const placedCircles = [];
-
     for (let i = 0; i < amountOfcirc; i++) {
-        let attempts = 0;
-        const maxAttempts = 100;
-        let x, y;
-        let isValid = false;
+        let tries = 0;
+        let placed = false;
+        
 
-        while (!isValid && attempts < maxAttempts) {
-            // Random coordinates fully inside the container
-            x = Math.random() * (container.clientWidth - circleSize);
-            y = Math.random() * (container.clientHeight - circleSize);
+        while (tries < maxAttemptsOfCircles && !placed) {
+            let x = Math.random() * (container.clientWidth - circleSize);
+            let y = Math.random() * (container.clientHeight - circleSize);
 
-            // Check for overlaps
-            isValid = true;
-            for (const circle of placedCircles) {
-                const dx = x - circle.x;
-                const dy = y - circle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < circleSize) {
-                    isValid = false;
-                    break;
-                }
+            if (!isOverlapping(x + circleRadius, y + circleRadius)) {
+                createCircle(x, y);
+                placed = true;
             }
-
-            attempts++;
+            tries++;
         }
 
-        if (isValid) {
-            placedCircles.push({ x, y });
-            createCircle(x, y);
-        } else {
-            console.warn(`Could not place circle ${i + 1} after ${maxAttempts} attempts.`);
+        if (!placed) {
+            throwErrow("Could not place all circles without overlap");
         }
     }
 };
 
 
- drawCircles(amountOfcirclesArray);
+drawCircles(amountOfcirclesArray);
 
+
+
+
+       
+
+
+
+ 
 
 const dragCircle = (event) => {
-    console.log("event", event)
+    //console.log("event", event)
     if (event.target.className !== "circle"){
         return
     }
     
     container.addEventListener("mousemove",(event1) => {
-        console.log(event1)
+    // console.log(event1)
   let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport   
   let circleX = event1.clientX - cord.left - circleRadius; // calculates X position relative to container
   let circleY = event1.clientY - cord.top - circleRadius;// calculates Y position relative to container
@@ -178,6 +177,11 @@ const dragCircle = (event) => {
 }
 
 container.addEventListener("mousedown", dragCircle)
+
+
+
+
+
 
 const throwErrow = (message = "Something went wrong") => {
     container.style.border = "2px red solid";
