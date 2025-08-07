@@ -119,7 +119,6 @@ const getRandomColor = (randomColor) => {
 function generateRandomPosition(containerWidth, containerHeight) {
   const x = Math.random() * (containerWidth - circleSize);
   const y = Math.random() * (containerHeight - circleSize);
-  console.log(111)
   return { x, y };
 }
 
@@ -165,22 +164,41 @@ const dragCircle = (event) => {
         return
     }
     
-    container.addEventListener("mousemove",(event1) => {
+    document.addEventListener("mousemove",(event1) => {
     // console.log(event1)
   let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport   
+  //console.log(cord, 1111)
   let circleX = event1.clientX - cord.left - circleRadius; // calculates X position relative to container
+//   console.log(event1, "mouse")
+//   console.log(circleX, "XOfCircle")
+//   console.log(cord.left, "coordleftof Container")
+ 
+ ;
   let circleY = event1.clientY - cord.top - circleRadius;// calculates Y position relative to container
+//   console.log(cord.top, "coordtop")
+//     console.log(circleY, "yyyyy");
         event.target.style.top = circleY;
         event.target.style.left = circleX;
+
+       
         
+    
     })
+    
+}
+document.addEventListener("mouseup", () => {
+        container.removeEventListener("mousemove", dragCircle)
+        console.log("mouseup")
+    });
+
+const dropCircle = () => {
+document.addEventListener("mousedown", dragCircle)
+   
+
+
 }
 
-container.addEventListener("mousedown", dragCircle)
-
-
-
-
+dropCircle();
 
 
 const throwErrow = (message = "Something went wrong") => {

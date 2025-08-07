@@ -1,0 +1,42 @@
+body {
+     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app{
+    
+    float: left;
+    width: 100%;
+    position: absolute;
+    top: 0;
+
+}
+
+.pokemoncard{
+
+    display: block;
+    float: left;
+    position: relative;
+    margin: 0 .78125% 50px;
+    width: 23%;
+    background-color: bisque;
+}
+
+
+.pokemoncard img {
+    width: 100%;
+}
+
+.id {
+    color: #919191;
+    font-size: 80%;
+    padding-top: 2px;
+}
+
+.name {
+    color: #313131;
+    font-size: 155%;
+    padding: ;
+    
+}
