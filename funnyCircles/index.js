@@ -150,55 +150,36 @@ const drawCircles = (amountOfcirc) => {
 drawCircles(amountOfcirclesArray);
 
 
-
-
-       
-
-
-
- 
-
 const dragCircle = (event) => {
     //console.log("event", event)
     if (event.target.className !== "circle"){
         return
     }
-    
-    document.addEventListener("mousemove",(event1) => {
-    // console.log(event1)
-  let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport   
-  //console.log(cord, 1111)
-  let circleX = event1.clientX - cord.left - circleRadius; // calculates X position relative to container
-//   console.log(event1, "mouse")
-//   console.log(circleX, "XOfCircle")
-//   console.log(cord.left, "coordleftof Container")
- 
- ;
-  let circleY = event1.clientY - cord.top - circleRadius;// calculates Y position relative to container
-//   console.log(cord.top, "coordtop")
-//     console.log(circleY, "yyyyy");
-        event.target.style.top = circleY;
-        event.target.style.left = circleX;
-
-       
-        
-    
-    })
-    
-}
-document.addEventListener("mouseup", () => {
-        container.removeEventListener("mousemove", dragCircle)
-        console.log("mouseup")
-    });
-
-const dropCircle = () => {
-document.addEventListener("mousedown", dragCircle)
-   
+    const onMouseMove = (mousemoveEvent) => {
+        let cord = container.getBoundingClientRect();  // Gets the position and size of the container relative to the viewport   
+        let circleX = mousemoveEvent.clientX - cord.left - circleRadius; // calculates X position relative to container
+        let circleY = mousemoveEvent.clientY - cord.top - circleRadius;// calculates Y position relative to container
+        mousemoveEvent.target.style.top = circleY;
+        mousemoveEvent.target.style.left = circleX;
+    }
 
 
+    const onMouseUp = () => {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    };
+
+
+     document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
 }
 
-dropCircle();
+
+function init() {
+    container.addEventListener("mousedown", dragCircle)
+}
+
+init();
 
 
 const throwErrow = (message = "Something went wrong") => {
