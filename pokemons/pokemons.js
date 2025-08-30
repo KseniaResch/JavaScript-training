@@ -1,60 +1,95 @@
 const amountOfCards = 50;
-const app = document.querySelector(".app");
-const names = [
-  "Pikachu", "Charmander", "Bulbasaur", "Squirtle", "Eevee",
-  "Jigglypuff", "Meowth", "Snorlax", "Psyduck", "Gengar",
-  "Machop", "Geodude", "Magikarp", "Vulpix", "Growlithe",
-  "Lapras", "Mew", "Mewtwo", "Ditto", "Cubone",
-  "Onix", "Dratini", "Dragonair", "Dragonite", "Pidgey",
-  "Rattata", "Zubat", "Gastly", "Alakazam", "Golem",
-  "Scyther", "Pinsir", "Tauros", "Articuno", "Zapdos",
-  "Moltres", "Sandshrew", "Nidoran", "Clefairy", "Abra",
-  "Hitmonlee", "Hitmonchan", "Rhydon", "Kangaskhan", "Seadra",
-  "Staryu", "Mr. Mime", "Jynx", "Electabuzz", "Magmar"
-];
+const mainPage = document.querySelector("#mainPage");
 
 
-const createCards = (amount) => {
-  for (let i = 0; i < amount; i++) {
+
+const createCards = (data) => {
+  data.forEach((element, index) => {
     const card = document.createElement("div");
     card.className = "pokemoncard"
 
-//Create image
-const img = document.createElement("img")
-img.src = "./image.png"
-img.alt = "Pokemon"
+    //Create image
+    const img = document.createElement("img")
+    img.src = element.sprites.other['official-artwork'].front_default
+    img.alt = "Pokemon"
 
-//Create IDdiv
-const idDiv = document.createElement("div");
-idDiv.className = "id";
-idDiv.textContent = `#${String(i + 1).padStart(4, "0")}`;
+    //Create IDdiv
+    const idDiv = document.createElement("div");
+    idDiv.className = "id";
+   idDiv.textContent = `#${String(element.id).padStart(4, "0")}`;
 
+    const nameDiv = document.createElement("div");
+    nameDiv.className = "name";
+    nameDiv.textContent = element.name;
 
+    const buttonDiv = document.createElement("div");
+    buttonDiv.className = "buttons";
 
-const nameDiv = document.createElement("div");
-nameDiv.className = "name";
-nameDiv.textContent = names[i];
+    element.types.forEach((typeElement, index, types) => {
+      const type = document.createElement("div");
+      type.textContent = typeElement.type.name;
+      buttonDiv.append(type)
+    })
 
-const buttonDiv = document.createElement("div");
-buttonDiv.className = "buttons";
+    card.appendChild(img);
+    card.appendChild(idDiv);
+    card.appendChild(nameDiv);
+    card.appendChild(buttonDiv);
 
-const btn1 = document.createElement("button");
-btn1.textContent = "Type1";
-
-const btn2 = document.createElement("button");
-btn2.textContent = "Type2";
-
-
-
-card.appendChild(img);
-card.appendChild(idDiv);
-card.appendChild(nameDiv);
-card.appendChild(buttonDiv);
-card.appendChild(btn1);
-card.appendChild(btn2);
-
-app.appendChild(card)
-  }
+    mainPage.appendChild(card)
+  }) 
 };
 
-createCards(amountOfCards);
+const getPokemon = async (id) =>  {
+  if (id === undefined || id === null || String(id).trim() === "") {
+    console.error("getPokemon called with:", id);
+  //  throw new Error("Missing Pokémon id");
+  }
+
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  const data = await response.json();  
+  if (!response.ok) throw new Error("Not found");
+
+  return data;
+}
+
+//getPokemon(2);
+
+const getAllPokemons = async () => {
+//   const response = fetch('https://pokeapi.co/api/v2/pokemon') 
+//   console.log(response);
+//   response.then((data)=>{
+//     data.json().then((results)=>{
+//       console.log(results)   
+//     })
+//   })
+
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon')
+  const data = await response.json();
+  const pokemons =  data.results
+  console.log(pokemons)
+  const promises = pokemons.map((currentElement, index, sourcePokemons)=> {
+    return getPokemon(currentElement.name);
+    
+  })
+   console.log(promises);
+  const fullData = await Promise.all(promises)
+  console.log(fullData);
+  createCards(fullData);
+}
+
+
+getAllPokemons();
+
+
+// style
+//12 pokemons on the page
+// load more 
+// go into pokemons
+
+const arr = [1,2,3,4];
+const arr2 = arr.map((number, index, sourceArr)=>{
+return number * 2;
+})
+console.log(arr2);
+

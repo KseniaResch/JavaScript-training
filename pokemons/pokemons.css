@@ -1,26 +1,35 @@
 body {
-     display: flex;
+     /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
-.app{
-    
-    float: left;
-    width: 100%;
-    position: absolute;
-    top: 0;
+ #mainPage {
+     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 900px;
+    gap: 15px;
+    justify-content: center;   
+} 
 
+.app {
+     width: 100%;
+    background: #fff url(./container_bg.png);
+    display: flex;
+    justify-content: center;
 }
+
 
 .pokemoncard{
 
-    display: block;
-    float: left;
-    position: relative;
-    margin: 0 .78125% 50px;
-    width: 23%;
-    background-color: bisque;
+   width: 205px;
+    background-color: white;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 
@@ -37,6 +46,12 @@ body {
 .name {
     color: #313131;
     font-size: 155%;
-    padding: ;
+
     
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
 }
