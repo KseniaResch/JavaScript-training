@@ -1,4 +1,7 @@
-const amountOfCards = 50;
+const BASE_URL = "https://pokeapi.co/api/"
+const API_VERSION = "v2/"
+const amountOfCards = 12;
+let offset = 0
 const mainPage = document.querySelector("#mainPage");
 
 
@@ -20,21 +23,24 @@ const createCards = (data) => {
 
     const nameDiv = document.createElement("div");
     nameDiv.className = "name";
-    nameDiv.textContent = element.name;
+    nameDiv.textContent = element.name.replace(/^./, c => c.toUpperCase()); //replaces the small letter with the capital letter
 
-    const buttonDiv = document.createElement("div");
-    buttonDiv.className = "buttons";
+    const abilities = document.createElement("div");
+    abilities.className = "abilities";
 
     element.types.forEach((typeElement, index, types) => {
       const type = document.createElement("div");
       type.textContent = typeElement.type.name;
-      buttonDiv.append(type)
+      //type.className = "badge" + " " + "fire";
+      type.classList.add("badge");
+      type.classList.add(typeElement.type.name);
+      abilities.append(type);
     })
 
     card.appendChild(img);
     card.appendChild(idDiv);
     card.appendChild(nameDiv);
-    card.appendChild(buttonDiv);
+    card.appendChild(abilities);
 
     mainPage.appendChild(card)
   }) 
@@ -46,7 +52,7 @@ const getPokemon = async (id) =>  {
   //  throw new Error("Missing Pokémon id");
   }
 
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  const response = await fetch(`${BASE_URL}${API_VERSION}/pokemon/${id}`)
   const data = await response.json();  
   if (!response.ok) throw new Error("Not found");
 
@@ -55,7 +61,7 @@ const getPokemon = async (id) =>  {
 
 //getPokemon(2);
 
-const getAllPokemons = async () => {
+const getAllPokemons = async (offset) => {
 //   const response = fetch('https://pokeapi.co/api/v2/pokemon') 
 //   console.log(response);
 //   response.then((data)=>{
@@ -64,7 +70,7 @@ const getAllPokemons = async () => {
 //     })
 //   })
 
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon')
+  const response = await fetch(`${BASE_URL}${API_VERSION}/pokemon?limit=${amountOfCards}&offset=${offset}`); // show only 12 pokemons
   const data = await response.json();
   const pokemons =  data.results
   console.log(pokemons)
@@ -79,12 +85,21 @@ const getAllPokemons = async () => {
 }
 
 
-getAllPokemons();
+
+const loadMoreButten = document.querySelector("#loadMore");
+loadMoreButten.addEventListener("click", (event) => {
+  offset += amountOfCards
+//  offset = offset + 12
+  getAllPokemons(offset)
+    
+});
 
 
-// style
-//12 pokemons on the page
-// load more 
+
+getAllPokemons(offset);
+
+
+
 // go into pokemons
 
 const arr = [1,2,3,4];
