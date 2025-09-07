@@ -6,31 +6,36 @@
     <title>Document</title>
 </head>
 <body>
-
     <div class="app">
-        <!-- <div class="pokemoncard" id = "pokemoncard">
-         <img src=".\image.png" alt="pokemon"/>
-            <div class="id">#0001</div>
-            <div class="name"> Harry</div>
-            <div class="buttons">
-                <button>
-                    type1
-                </button>
-                <button>
-                    type2
-                </button>
-            </div> -->
+        <div class ="mainPage" id="mainPage"></div>
+        <button id="loadMore">Load more</button>
 
-            <div class ="mainPage" id="mainPage"></div>
-            
- 
- 
+        <div id="innerPokemonCard" >
+            <a class="pokemoncard">
+                <div id="previousPokemon">previousPokemon</div>
+                <div id="nextPokemon">nextPokemon</div>
+               
+                <div class="id">#123</div>
+                <div class="name">name</div>
+                <div class="abilities">abilities</div>
+                <div class="coloumns">
+                    <div id="coloumnLeft">coloumnLeft
+                      <img alt="Pokemon">
+                      <div id="stats">stats   
+                      </div>
+                    </div>
+                    <div id="coloumnRight">coloumnRight</div>
+                </div>  
+                <div id="evolutions">evolutions</div>
+                <button id="exploreMorePokemon">exploreMorePokemon</button>
+                <div id="cards">cards</div>
+                <button id="buttonCards">explore more cards</button>
+            </a>
+        </div>
+        
+        
     </div>
 
-    <div id="mainPage"></div>
-<button id="loadMore">Load more</button>
-
-     <script src="pokemons.js"></script>
- 
+    <script src="pokemons.js"></script>
 </body>
 </html>

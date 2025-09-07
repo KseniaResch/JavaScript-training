@@ -5,7 +5,7 @@ body {
 }
 
  #mainPage {
-     display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
     width: 900px;
@@ -14,10 +14,12 @@ body {
 } 
 
 .app {
-     width: 100%;
+    width: 100%;
     background: #fff url(./container_bg.png);
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -76,7 +78,7 @@ body {
 
 #loadMore{
 
-   display:block;
+   display:none;
    margin:16px auto 48px; 
    padding:10px 16px;
    border-radius:8px;
@@ -91,6 +93,7 @@ body {
     width: 80px;
     padding: 5px 10px;
     background-color: rgb(197, 194, 194);
+    text-transform: capitalize;
 }
  
 .fire {
@@ -129,3 +132,45 @@ body {
     background-color: rgb(97, 41, 41);
     color: white;
 }
+
+.pokemoncard { 
+    display:block; 
+ }
+
+ .previousPokemon {
+    display: inline;
+    width: 50%
+ }
+ .nextPokemon {
+
+ }
+
+ #innerPokemonCard{
+    display: block;
+    width: 90%;
+ }
+#innerPokemonCard .pokemoncard {
+    display: flex;
+    width: 100% 
+}
+.coloumns {
+    display: flex;
+
+}
+#coloumnLeft {
+    width: 50%;
+    background-color: yellow;
+}
+
+#coloumnRight{
+    width: 50%;
+    background-color: green;
+
+}
+#stats{
+    background-color: blue;
+}
+
+
+ 
+

@@ -3,6 +3,7 @@ const API_VERSION = "v2/"
 const amountOfCards = 12;
 let offset = 0
 const mainPage = document.querySelector("#mainPage");
+const cardTemplate = document.getElementById("pokemoncard");
 
 
 
@@ -93,6 +94,9 @@ loadMoreButten.addEventListener("click", (event) => {
   getAllPokemons(offset)
     
 });
+
+
+
 
 
 
