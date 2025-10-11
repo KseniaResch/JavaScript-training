@@ -59,8 +59,6 @@ body {
 
 .id {
     color: #919191;
-    font-size: 80%;
-    padding-top: 2px;
 }
 
 .name {
@@ -133,9 +131,7 @@ body {
     color: white;
 }
 
-.pokemoncard { 
-    display:block; 
- }
+
 
  .previousPokemon {
     display: inline;
@@ -146,11 +142,11 @@ body {
  }
 
  #innerPokemonCard{
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 90%;
  }
 #innerPokemonCard .pokemoncard {
-    display: flex;
     width: 100% 
 }
 .coloumns {
@@ -158,19 +154,121 @@ body {
 
 }
 #coloumnLeft {
-    width: 50%;
-    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
 }
 
 #coloumnRight{
-    width: 50%;
-    background-color: green;
-
+   display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
 }
+
 #stats{
     background-color: blue;
+    width: 100%
+}
+#evolutions {
+    background-color: pink;
+    width: 100%
+}
+
+#version {
+    background-color: #919191;
+    width: 100%
+}
+
+#versionLabels {
+    background-color: aqua;
+    width: 100%;
+    display: flex
+
+}
+.coloumns {    
+     display: flex;
+     gap: 15px; 
+}
+
+#evolutions { order: 1; }
+#buttonCards { order: 2; }
+#exploreMorePokemons { order: 3}
+#cards {order: 4}
+#buttonCards {order: 5}
+
+.links {
+   display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-direction: row;
+    align-content: space-around;
+    margin-bottom: 40px;
+}
+
+.linksItem {
+    background-color: blue;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
 }
 
 
+.title {
+   display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#abilities {
+    background: rgb(121, 181, 221);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 25px;
+    flex-direction: row;
+}
+
+#abilities .item {
+   display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#abilities .item .value {
+    font-size: 22px; 
+    font-weight: 600;
+}
+
+#abilities .item .label {
+    font-size: 22px;
+    color: white;
+}
+
+#types {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.badges {
+        display: flex;
+        gap: 10px;
+}
+
+#stats {
+    background-color: rgb(170, 166, 166);
+    border-radius: 20px;
+    width: 100%;
+    
+}
  
 
