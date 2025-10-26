@@ -43,37 +43,26 @@ body {
   margin-bottom: 5px;
   font-weight: 600;      
 }
-
-
 .pokemoncard .abilities {
   display: flex;
   flex-wrap: wrap;
   gap: 0 1.5625%;
 }
-
-
-
 .pokemoncard img {
     width: 100%;
 }
-
 .id {
     color: #919191;
 }
-
 .name {
     color: #313131;
-    font-size: 155%;
-
-    
+    font-size: 155%;    
 }
-
 .buttons {
     display: flex;
     gap: 15px;
     flex-direction: row;
 }
-
 #loadMore{
 
    display:none;
@@ -83,7 +72,6 @@ body {
    background:#7287e2; 
    cursor:pointer;
 }
-
 .badge {
     border-radius: 3px;
     font-size: 11px;
@@ -93,7 +81,6 @@ body {
     background-color: rgb(197, 194, 194);
     text-transform: capitalize;
 }
- 
 .fire {
     background-color: red;
     color: white;
@@ -102,7 +89,6 @@ body {
     background-color: rgb(93, 173, 226);
     color: white;
 }
-
 .flying {
      background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
 }
@@ -112,7 +98,6 @@ body {
 .poison{
     background-color: rgb(151, 69, 151);
 }
-
 .bug {
     background-color: pink;
     color: white
@@ -130,17 +115,10 @@ body {
     background-color: rgb(97, 41, 41);
     color: white;
 }
-
-
-
  .previousPokemon {
     display: inline;
     width: 50%
  }
- .nextPokemon {
-
- }
-
  #innerPokemonCard{
     display: flex;
     flex-direction: column;
@@ -151,7 +129,6 @@ body {
 }
 .coloumns {
     display: flex;
-
 }
 #coloumnLeft {
     display: flex;
@@ -160,7 +137,6 @@ body {
     padding: 10px;
     width: 100%;
 }
-
 #coloumnRight{
    display: flex;
     flex-direction: column;
@@ -168,7 +144,6 @@ body {
     padding: 10px;
     width: 100%;
 }
-
 #stats{
     background-color: blue;
     width: 100%
@@ -177,29 +152,24 @@ body {
     background-color: pink;
     width: 100%
 }
-
 #version {
     background-color: #919191;
     width: 100%
 }
-
 #versionLabels {
     background-color: aqua;
     width: 100%;
     display: flex
-
 }
 .coloumns {    
      display: flex;
      gap: 15px; 
 }
-
 #evolutions { order: 1; }
 #buttonCards { order: 2; }
 #exploreMorePokemons { order: 3}
 #cards {order: 4}
 #buttonCards {order: 5}
-
 .links {
    display: flex;
     justify-content: space-between;
@@ -208,7 +178,6 @@ body {
     align-content: space-around;
     margin-bottom: 40px;
 }
-
 .linksItem {
     background-color: blue;
     color: white;
@@ -218,8 +187,6 @@ body {
     justify-content: center;
     display: flex;
 }
-
-
 .title {
    display: flex;
     gap: 10px;
@@ -227,7 +194,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 #abilities {
     background: rgb(121, 181, 221);
     padding: 20px;
@@ -236,39 +202,32 @@ body {
     gap: 25px;
     flex-direction: row;
 }
-
 #abilities .item {
    display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
 #abilities .item .value {
     font-size: 22px; 
     font-weight: 600;
 }
-
 #abilities .item .label {
     font-size: 22px;
     color: white;
 }
-
 #types {
     display: flex;
     gap: 15px;
     flex-direction: column;
 }
-
 .badges {
         display: flex;
         gap: 10px;
 }
-
 #stats {
     background-color: rgb(170, 166, 166);
     border-radius: 20px;
-    width: 100%;
-    
+    width: 100%;   
 }
  
 
